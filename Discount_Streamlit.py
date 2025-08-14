@@ -90,12 +90,14 @@ st.markdown(
 with st.container():
     st.markdown("<div class='card'>", unsafe_allow_html=True)
 
-    price = st.number_input("Enter the original price (₹)", min_value=0.0, format="%.2f")
-    discount = st.number_input("Enter the discount (%)", min_value=0.0, max_value=100.0, format="%.2f")
+    price = st.number_input("Enter the original price (₹)", min_value=0, step=1)
+    discount = st.number_input("Enter the discount (%)", min_value=0, max_value=100, step=1)
 
     if st.button("Calculate Final Price"):
-        final_price = price - (price * discount / 100)
-        st.markdown(f"<div class='success-box'>Final Price after {discount}% discount: ₹{final_price:.2f}</div>", unsafe_allow_html=True)
+        final_price = round(price - (price * discount / 100))
+        st.markdown(f"<div class='success-box'>Final Price after {discount}% discount: ₹{final_price}</div>", unsafe_allow_html=True)
 
     st.markdown("</div>", unsafe_allow_html=True)
+
+
 
